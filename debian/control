@@ -1,0 +1,17 @@
+Source: migrate113
+Section: admin
+Priority: optional
+Maintainer: Vladimir Vinogradenko <vladimirv@ixsystems.com>
+Build-Depends: debhelper-compat (= 12), python3-all
+Standards-Version: 4.4.0
+Homepage: http://www.freenas.org
+
+Package: migrate113
+Architecture: any
+Depends: python3,
+         python3-crypto,
+         python3-ipaddr,
+         python3-openssl,
+         python3-sqlparse,
+         ${misc:Depends}
+Description: Legacy migration (up to latest release of 11.3)
