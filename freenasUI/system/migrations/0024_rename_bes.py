@@ -4,11 +4,31 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 import os
+import platform
 import subprocess
 
 
 def rename_bes(apps, schema_editor):
-    pass
+
+    if platform.system() != 'FreeBSD':
+        return
+
+    # There is no reason to run that code on fresh install
+    if os.environ.get('FREENAS_INSTALL', '').lower() == 'yes':
+        return
+
+    # See #36118 for more details
+    cp = subprocess.run(['/usr/local/sbin/beadm', 'list', '-H'], stdout=subprocess.PIPE)
+    output = cp.stdout.decode('utf8', 'ignore')
+    for line in output.splitlines():
+        columns = line.split()
+        if ':' not in columns[0]:
+            continue
+        # Cannot rename current BE
+        if 'N' in columns[1]:
+            continue
+
+        subprocess.run(['zfs', 'rename', f'freenas-boot/ROOT/{columns[0]}', f'freenas-boot/ROOT/{columns[0].replace(":", "-")}'])
 
 
 class Migration(migrations.Migration):

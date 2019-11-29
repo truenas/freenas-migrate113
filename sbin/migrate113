@@ -1,3 +1,9 @@
 #!/bin/sh
-LIBDIR=/usr/lib/migrate113/src
-exec /usr/bin/python3 $LIBDIR/main.py $*
+if [ "$(uname)" = "FreeBSD" ]
+then
+    LIBDIR=/usr/local/lib/migrate113/src
+else
+    LIBDIR=/usr/lib/migrate113/src
+fi
+
+exec python3 $LIBDIR/main.py $*
