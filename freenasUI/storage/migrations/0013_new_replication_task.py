@@ -11,7 +11,11 @@ import freenasUI.freeadmin.models.fields
 
 
 def process_ssh_keyscan_output(output):
-    return [" ".join(line.split()[1:]) for line in output.split("\n") if line and not line.startswith("# ")][-1]
+    keys = [" ".join(line.split()[1:]) for line in output.split("\n") if line and not line.startswith("# ")]
+    if keys:
+        return keys[-1]
+    else:
+        return ""
 
 
 def is_child(child: str, parent: str):
@@ -90,7 +94,10 @@ def migrate_filesystem(apps, schema_editor):
 def target_dataset_normpath(apps, schema_editor):
     Replication = apps.get_model('storage', 'Replication')
     for replication in Replication.objects.all():
-        replication.repl_target_dataset = os.path.normpath(replication.repl_target_dataset.strip().strip("/").strip())
+        replication.repl_target_dataset = os.path.join(
+            os.path.normpath(replication.repl_target_dataset.strip().strip("/").strip()),
+            os.path.basename(replication.repl_source_datasets[0]),
+        )
         replication.save()
 
 
@@ -132,8 +139,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(repl_compression),
-
         migrations.AddField(
             model_name='replication',
             name='repl_direction',
@@ -309,6 +314,7 @@ class Migration(migrations.Migration):
             name='repl_compression',
             field=models.CharField(blank=True, choices=[('LZ4', 'lz4 (fastest)'), ('PIGZ', 'pigz (all rounder)'), ('PLZIP', 'plzip (best compression)')], default='LZ4', max_length=120, null=True, verbose_name='Stream Compression'),
         ),
+        migrations.RunPython(repl_compression),
 
         migrations.RenameField(
             model_name='replication',

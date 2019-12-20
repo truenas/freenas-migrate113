@@ -1,0 +1,8 @@
+.idea
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/migrate113.debhelper.log
+debian/migrate113.substvars
+debian/migrate113/
+__pycache__/
