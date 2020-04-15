@@ -7,7 +7,6 @@ from django.db import migrations, models
 import django.db.models.deletion
 import freenasUI.freeadmin.models.fields
 import freenasUI.services.models
-from freenasUI.common.system import get_sw_name
 from freenasUI import choices
 
 
@@ -16,9 +15,9 @@ def create_services(apps, schema_editor):
     afp.save()
 
     cifs = apps.get_model('services', 'CIFS')()
-    cifs.cifs_srv_netbiosname = get_sw_name().lower()
+    cifs.cifs_srv_netbiosname = 'truenas'
     cifs.cifs_srv_workgroup = 'WORKGROUP'
-    cifs.cifs_srv_description = '%s Server' % get_sw_name()
+    cifs.cifs_srv_description = 'TrueNAS Server'
     cifs.save()
 
     ddns = apps.get_model('services', 'DynamicDNS')()

@@ -5,8 +5,6 @@ from __future__ import unicode_literals
 import datetime
 from django.db import migrations, models
 
-from freenasUI.common.system import get_sw_name
-
 
 class Migration(migrations.Migration):
 
@@ -19,7 +17,7 @@ class Migration(migrations.Migration):
             model_name='replication',
             name='repl_readonly',
             field=models.CharField(choices=[('SET', 'Set to read-only'), ('REQUIRE', 'Require to be read-only'), ('IGNORE', 'Ignore read-only value')],
-                                   default='SET' if get_sw_name().lower() == 'freenas' else 'REQUIRE',
+                                   default='SET',
                                    max_length=120, verbose_name='Destination dataset read-only'),
         ),
     ]
