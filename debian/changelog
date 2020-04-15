@@ -1,4 +1,4 @@
-migrate113 (0.6-1~truenas+1) bullseye-truenas-unstable; urgency=medium
+migrate113 (0.7-1~truenas+1) bullseye-truenas-unstable; urgency=medium
 
   * Initial release (Closes: #55555)
 
