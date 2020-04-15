@@ -15,3 +15,4 @@ Depends: python3,
          python3-sqlparse,
          ${misc:Depends}
 Description: Legacy migration (up to latest release of 11.3)
+ It allows to import config of older versions (before 12)
