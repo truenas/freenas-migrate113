@@ -4,17 +4,17 @@ from __future__ import unicode_literals
 
 import base64
 from Crypto.Cipher import AES
+from django.conf import settings
 from django.db import migrations, models
 
 
 PWENC_BLOCK_SIZE = 32
-PWENC_FILE_SECRET = '/data/pwenc_secret'
 PWENC_PADDING = b'{'
 PWENC_CHECK = 'Donuts!'
 
 
 def pwenc_get_secret():
-    with open(PWENC_FILE_SECRET, 'rb') as f:
+    with open(settings.PWENC_FILE_SECRET, 'rb') as f:
         secret = f.read()
     return secret
 

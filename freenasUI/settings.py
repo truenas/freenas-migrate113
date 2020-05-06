@@ -31,6 +31,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     '--file', '-f', required=True
 )
+parser.add_argument(
+    '--secret', '-s', required=False
+)
 args = parser.parse_args()
 
 DATABASES = {
@@ -61,6 +64,8 @@ INSTALLED_APPS = [
 ]
 
 SECRET_KEY = '.'
+
+PWENC_FILE_SECRET = args.secret or '/data/pwenc_secret'
 
 """
 
