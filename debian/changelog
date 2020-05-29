@@ -1,5 +1,0 @@
-migrate113 (0.10-1~truenas+1) bullseye-truenas-unstable; urgency=medium
-
-  * Initial release (Closes: #55555)
-
- -- Vladimir Vinogradenko <vladimirv@ixsystems.com>  Wed, 13 Nov 2019 12:12:00 +0100
