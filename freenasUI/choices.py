@@ -664,7 +664,7 @@ SERIAL_SPEED = (
 
 SED_USER = (
     ('user', _('User')),
-    ('master', _('Master')),
+    ('main', _('Main')),
 )
 
 

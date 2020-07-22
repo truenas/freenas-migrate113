@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
         AddField(
             model_name='advanced',
             name='adv_sed_user',
-            field=models.CharField(choices=[('user', 'User'), ('master', 'Master')], default='user', help_text='User passed to camcontrol security -U for unlocking SEDs', max_length=120, verbose_name='camcontrol security user'),
+            field=models.CharField(choices=[('user', 'User'), ('main', 'Main')], default='user', help_text='User passed to camcontrol security -U for unlocking SEDs', max_length=120, verbose_name='camcontrol security user'),
         ),
         migrations.RunPython(add_adv_sed_user),
     ]

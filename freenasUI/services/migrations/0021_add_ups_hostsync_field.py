@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
             field=models.IntegerField(
                 default=15,
                 verbose_name='Host Sync',
-                help_text='Upsmon will wait up to this many seconds in master '
-                          'mode for the slaves to disconnect during a shutdown situation'
+                help_text='Upsmon will wait up to this many seconds in main '
+                          'mode for the subordinates to disconnect during a shutdown situation'
             ),
         )
     ]

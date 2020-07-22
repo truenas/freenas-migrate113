@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
                 ('cifs_srv_unixcharset', models.CharField(choices=choices.UNIXCHARSET_CHOICES, default='UTF-8', max_length=120, verbose_name='UNIX charset')),
                 ('cifs_srv_loglevel', models.CharField(choices=choices.LOGLEVEL_CHOICES, default='0', max_length=120, verbose_name='Log level')),
                 ('cifs_srv_syslog', models.BooleanField(default=False, verbose_name='Use syslog only')),
-                ('cifs_srv_localmaster', models.BooleanField(default=False, verbose_name='Local Master')),
+                ('cifs_srv_localmain', models.BooleanField(default=False, verbose_name='Local Main')),
                 ('cifs_srv_domain_logons', models.BooleanField(default=False, verbose_name='Domain logons')),
                 ('cifs_srv_timeserver', models.BooleanField(default=False, verbose_name='Time Server for Domain')),
                 ('cifs_srv_guest', freenasUI.freeadmin.models.fields.UserField(default='nobody', help_text="Use this option to override the username ('nobody' by default) which will be used for access to services which are specified as guest. Whatever privileges this user has will be available to any client connecting to the guest service. This user must exist in the password file, but does not require a valid login. The user root cannot be used as guest account.", max_length=120, verbose_name='Guest account')),
@@ -516,7 +516,7 @@ class Migration(migrations.Migration):
             name='UPS',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('ups_mode', models.CharField(choices=[('master', 'Master'), ('slave', 'Slave')], default='master', max_length=6, verbose_name='UPS Mode')),
+                ('ups_mode', models.CharField(choices=[('main', 'Main'), ('subordinate', 'Subordinate')], default='main', max_length=6, verbose_name='UPS Mode')),
                 ('ups_identifier', models.CharField(default='ups', help_text='This name is used to uniquely identify your UPS on this system.', max_length=120, verbose_name='Identifier')),
                 ('ups_remotehost', models.CharField(blank=True, max_length=50, verbose_name='Remote Host')),
                 ('ups_remoteport', models.IntegerField(blank=True, default=3493, verbose_name='Remote Port')),

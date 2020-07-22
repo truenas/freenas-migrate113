@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('disabled', models.BooleanField(default=False)),
-                ('master', models.BooleanField(default=False)),
+                ('main', models.BooleanField(default=False)),
                 ('timeout', models.IntegerField(default=0)),
             ],
             options={
