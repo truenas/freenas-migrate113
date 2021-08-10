@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 import base64
-from Crypto.Cipher import AES
+from Cryptodome.Cipher import AES
 from django.db import migrations, models
 import freenasUI.freeadmin.models.fields
 
@@ -23,8 +23,8 @@ def pwenc_get_secret():
 def pwenc_encrypt(text):
     if not isinstance(text, bytes):
         text = text.encode('utf8')
-    from Crypto.Random import get_random_bytes
-    from Crypto.Util import Counter
+    from Cryptodome.Random import get_random_bytes
+    from Cryptodome.Util import Counter
 
     def pad(x):
         return x + (PWENC_BLOCK_SIZE - len(x) % PWENC_BLOCK_SIZE) * PWENC_PADDING

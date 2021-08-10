@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 import base64
-from Crypto.Cipher import AES
+from Cryptodome.Cipher import AES
 from django.conf import settings
 from django.db import migrations, models
 
@@ -22,8 +22,8 @@ def pwenc_get_secret():
 def pwenc_encrypt(text):
     if not isinstance(text, bytes):
         text = text.encode('utf8')
-    from Crypto.Random import get_random_bytes
-    from Crypto.Util import Counter
+    from Cryptodome.Random import get_random_bytes
+    from Cryptodome.Util import Counter
 
     def pad(x):
         return x + (PWENC_BLOCK_SIZE - len(x) % PWENC_BLOCK_SIZE) * PWENC_PADDING
@@ -41,7 +41,7 @@ def pwenc_encrypt(text):
 def pwenc_decrypt(encrypted=None):
     if not encrypted:
         return ""
-    from Crypto.Util import Counter
+    from Cryptodome.Util import Counter
     encrypted = base64.b64decode(encrypted)
     nonce = encrypted[:8]
     encrypted = encrypted[8:]
