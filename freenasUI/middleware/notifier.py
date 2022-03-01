@@ -35,7 +35,7 @@ actions.
 """
 
 
-from middlewared.plugins.system import SystemService
+from middlewared.plugins.system.product import SystemService
 from middlewared.plugins.pwenc import encrypt, decrypt
 
 
