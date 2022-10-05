@@ -538,25 +538,5 @@
         "bsdusr_sudo": false,
         "bsdusr_microsoft_account": false
     }
-},
-{
-    "model": "account.bsdusers",
-    "pk": 28,
-    "fields": {
-        "bsdusr_uid": 8675309,
-        "bsdusr_username": "media",
-        "bsdusr_unixhash": "*",
-        "bsdusr_smbhash": "*",
-        "bsdusr_group": 35,
-        "bsdusr_home": "/var/empty",
-        "bsdusr_shell": "/usr/sbin/nologin",
-        "bsdusr_full_name": "Media User",
-        "bsdusr_builtin": true,
-        "bsdusr_email": "",
-        "bsdusr_password_disabled": false,
-        "bsdusr_locked": false,
-        "bsdusr_sudo": false,
-        "bsdusr_microsoft_account": false
-    }
 }
 ]
