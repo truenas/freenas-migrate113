@@ -338,15 +338,5 @@
         "bsdgrp_builtin": true,
         "bsdgrp_sudo": false
     }
-},
-{
-    "model": "account.bsdgroups",
-    "pk": 35,
-    "fields": {
-        "bsdgrp_gid": 8675309,
-        "bsdgrp_group": "media",
-        "bsdgrp_builtin": true,
-        "bsdgrp_sudo": false
-    }
 }
 ]
