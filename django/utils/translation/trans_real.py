@@ -1,6 +1,7 @@
 """Translation helper functions."""
 from __future__ import unicode_literals
 
+import contextlib
 import gettext as gettext_module
 import os
 import re
@@ -107,7 +108,8 @@ class DjangoTranslation(gettext_module.GNUTranslations):
         gettext_module.GNUTranslations.__init__(self)
         if domain is not None:
             self.domain = domain
-        self.set_output_charset('utf-8')  # For Python 2 gettext() (#25720)
+        with contextlib.suppress(AttributeError):
+            self.set_output_charset('utf-8')  # For Python 2 gettext() (#25720)
 
         self.__language = language
         self.__to_language = to_language(language)
@@ -137,6 +139,10 @@ class DjangoTranslation(gettext_module.GNUTranslations):
             # No catalogs found for this language, set an empty catalog.
             self._catalog = {}
 
+    def gettext(self, message: str) -> str:
+        output = super().gettext(message)
+        return output.encode('utf-8').decode()
+
     def __repr__(self):
         return "<DjangoTranslation lang:%s>" % self.__language
 
@@ -152,7 +158,6 @@ class DjangoTranslation(gettext_module.GNUTranslations):
             domain=self.domain,
             localedir=localedir,
             languages=[self.__locale],
-            codeset='utf-8',
             fallback=use_null_fallback)
 
     def _init_translation_catalog(self):
